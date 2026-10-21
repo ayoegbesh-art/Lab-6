@@ -3,10 +3,10 @@ $servername = "localhost";
 $username = "root";
 $password = "Pass4!";
 $dbname = "gp_surgery";
-$port = 3307;
+$port = 3306;
 
 // Create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname, $port);
+$conn = mysqli_connect($servername, $username, $password, $dbname);
 
 // Check connection
 if (!$conn) {
