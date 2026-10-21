@@ -1,27 +1,24 @@
-<html>
-    <head>
-      <title>Bootstrap Example</title>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    </head>
-    <body>
-      <div class="container mt-3">
-        <h2>Patient Visits</h2>
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>Visit Date</th>
-                <th>Visit Time</th>
-                <th>Firstname</th>
-                <th>Surname</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php include("visitListWithNames.php");?>
-            </tbody>
-          </table>
-       </div>
-    </body>
-</html>
+<?php
+
+$vDate = $_POST['visitDate'];
+$vTime = $_POST['visitTime'];
+$DoID = $_POST['docid'];
+$PatID = $_POST['ptntid'];
+$Cost = $_POST['cost'];
+
+include("dbcon.php");
+
+$sql = "SELECT visit_date, visit_time, patient.Firstname, patient.Surname FROM visit INNER JOIN patient ON patient.id = visit.patient_id";
+
+$result = mysqli_query($conn, $sql);
+
+while($row = mysqli_fetch_assoc($result)) {
+    $id=$row['visit_date'];
+    $vtime=$row['visit_time'];
+    $fn=$row['Firstname'];
+    $sname=$row['Surname'];
+
+    echo "<TR><TD>$id</TD><TD>$vtime</TD><TD>$fn</TD><TD>$sname</TD></TR>";
+}
+
+?>

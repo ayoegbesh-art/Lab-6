@@ -16,7 +16,7 @@
               </tr>
             </thead>
             <tbody>
-              <?php include("visitList.php");?>
+              <?php include("showVisitsWithNames.php");?>
             </tbody>
           </table>
        </div>
